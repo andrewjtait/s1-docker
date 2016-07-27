@@ -13,8 +13,13 @@ Available commands are:
 
   eval "$(docker-machine env default)"
 
-  if [[ $1 =~ "rmi" ]]; then 
-    eval "$(docker rmi -f $(docker images -q -a -f dangling=true))"
+  if [[ $1 =~ "rmc" ]]; then 
+    eval "$(docker rm $(docker ps -a -q))"
+    return;
+  fi
+
+  if [[ $1 =~ "stop" ]]; then 
+    eval "$(docker stop $(docker ps -q))"
     return;
   fi
 }
