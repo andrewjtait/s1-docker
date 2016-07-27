@@ -1,0 +1,24 @@
+#!/bin/bash
+
+s1-docker() {
+  # if `github help` is called then display information on how to use the script
+  if [[ $1 =~ "help" ]]; then
+    echo "Bash function to quickly open https://www.github.com in your browser to the relevant URL based on the current git repository and branch.
+
+Available commands are:
+  github                      opens GitHub repository and branch
+  github compare              opens GitHub branch comparison with \`master\`
+  github compare branch_name  opens GitHub branch comparison with \`branch_name\`
+  github help                 shows help
+  github pr                   opens a GitHub pull request against \`master\`
+  github pr branch_name       opens a GitHub pull request against \`branch_name\`"
+    return;
+  fi
+
+  eval "$(docker-machine env default)"
+
+  if [[ $1 =~ "rmi" ]]; then 
+    eval "$(docker rmi -f $(docker images -q -a -f dangling=true))"
+    return;
+  fi
+}
