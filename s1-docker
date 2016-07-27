@@ -17,6 +17,7 @@ Available commands are:
   fi
 
   if [[ $1 =~ "stop" ]]; then 
+    echo "Stopping all containers..."
     docker stop $(docker ps -q)
     return;
   fi
