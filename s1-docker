@@ -11,15 +11,13 @@ Available commands are:
     return;
   fi
 
-  eval "$(docker-machine env default)"
-
   if [[ $1 =~ "rmc" ]]; then 
-    eval "$(docker rm $(docker ps -a -q))"
+    docker rm $(docker ps -a -q)
     return;
   fi
 
   if [[ $1 =~ "stop" ]]; then 
-    eval "$(docker stop $(docker ps -q))"
+    docker stop $(docker ps -q)
     return;
   fi
 }
