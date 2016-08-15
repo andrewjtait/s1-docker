@@ -7,7 +7,13 @@ s1-docker() {
 
 Available commands are:
   s1-docker rmc          Remove all containers
-  s1-docker stop         Stops all running docker containers"
+  s1-docker stop         Stops all running docker containers
+  s1-docker rmd          Remove all data volumes"
+    return;
+  fi
+
+  if [[ $1 =~ "rmd" ]]; then 
+    docker volume rm $(docker volume ls -q )
     return;
   fi
 
