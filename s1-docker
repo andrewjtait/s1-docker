@@ -6,19 +6,28 @@ s1-docker() {
     echo "Bash commands to interact with docker
 
 Available commands are:
-  s1-docker rmc          Remove all containers
-  s1-docker stop         Stops all running docker containers
-  s1-docker rmd          Remove all data volumes"
-    return;
-  fi
-
-  if [[ $1 =~ "rmd" ]]; then 
-    docker volume rm $(docker volume ls -q )
+  s1-docker rmc          Remove all docker containers
+  s1-docker rmd          Remove all docker data volumes
+  s1-docker rmi          Remove all docker images
+  s1-docker stop         Stops all running docker containers"
     return;
   fi
 
   if [[ $1 =~ "rmc" ]]; then 
+    echo "Removing all docker containers"
     docker rm $(docker ps -a -q)
+    return;
+  fi
+
+  if [[ $1 =~ "rmd" ]]; then 
+    echo "Removing all docker data volumes"
+    docker volume rm $(docker volume ls -q )
+    return;
+  fi
+
+  if [[ $1 =~ "rmi" ]]; then 
+    echo "Removing all docker images"
+    docker rmi $(docker images -q)
     return;
   fi
 
