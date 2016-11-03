@@ -6,10 +6,20 @@ s1-docker() {
     echo "Bash commands to interact with docker
 
 Available commands are:
+  s1-docker start        Starts docker in your current session
   s1-docker rmc          Remove all docker containers
   s1-docker rmd          Remove all docker data volumes
   s1-docker rmi          Remove all docker images
   s1-docker stop         Stops all running docker containers"
+    return;
+  fi
+
+  if [[ $1 =~ "start" ]]; then 
+    echo "Starting docker"
+    docker-machine start default
+    docker-machine env
+    eval "$(docker-machine env default)"
+    eval "$(aws ecr get-login --region eu-west-1)"
     return;
   fi
 
