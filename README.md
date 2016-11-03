@@ -13,6 +13,21 @@ brew tap andrewjtait/s1-docker git@github.com:andrewjtait/s1-docker.git
 ```
 
 ### Install S1-Docker
+
 ```bash
 brew install s1-docker
+```
+
+## Upgrading
+
+### Update the tap
+
+```bash
+brew update
+```
+
+### Upgrade S1-Docker
+
+```bash
+brew upgrade s1-docker
 ```
